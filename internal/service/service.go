@@ -33,6 +33,9 @@ var morseDecode = buildDecodeTable(morseEncode)
 func buildDecodeTable(encode map[string]string) map[string]string {
 	decode := make(map[string]string, len(encode))
 	for k, v := range encode {
+		if k == "Ё" {
+			continue // Пропускаем символ "Ё", так как он уже представлен как "Е"
+		}
 		decode[v] = k
 	}
 	return decode
@@ -69,7 +72,7 @@ func textToMorse(input string) (string, error) {
 
 		textToMorse = append(textToMorse, builder.String())
 	}
-	return strings.Join(textToMorse, " "), nil
+	return strings.Join(textToMorse, " / "), nil
 }
 
 // данная функция morseToText преобразует код Морзе в текст
