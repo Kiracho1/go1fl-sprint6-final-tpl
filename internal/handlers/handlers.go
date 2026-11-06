@@ -34,7 +34,7 @@ func Upload(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// 2. Получаем файл из формы
-	uploaded, header, err := r.FormFile("file")
+	uploaded, header, err := r.FormFile("myFile")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
